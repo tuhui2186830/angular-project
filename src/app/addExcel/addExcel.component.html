@@ -1,0 +1,43 @@
+<div *ngIf="isFineshUpload">
+  <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+    <button nz-button><i nz-icon nzType="upload"></i><span>请选择文件</span></button>
+  </nz-upload>
+  <button nz-button [nzType]="'primary'" [nzLoading]="uploading" (click)="handleUpload()" [disabled]="fileList.length == 0"style="margin-top: 16px">
+    {{ uploading ? '正在上传' : '开始上传' }}
+  </button>
+</div>
+<div *ngIf="!isFineshUpload">
+    <div style="float:right">
+        <button nz-button [nzSize]="small" nzType="primary" (click)="changeAllFirstTable()">全部一级降级</button>
+        <button nz-button [nzSize]="small" nzType="primary" (click)="changeAllSecondTable()">全部二级降级</button>
+        <button nz-button [nzSize]="small" nzType="primary" (click)="changeAllThirdTable()">全部三级降级</button>
+    </div>
+    <div>
+      <div *ngFor="let data of allArray"> 
+          <nz-table #basicTable [nzData]="data">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Address</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data;let i=index">
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.age }}</td>
+                  <td>{{ data.address }}</td>
+                  <td>
+                    <a (click)="changeFirstTable(basicTable.data,data,i)">一级降档</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="changeSecondTable(basicTable.data,data,i)">二级降档</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a (click)="changeThirdTable(basicTable.data,data,i)">三级级降档</a>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+      </div>
+    </div>
+</div>

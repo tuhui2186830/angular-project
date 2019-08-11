@@ -1,0 +1,14 @@
+<ul nz-menu nzMode="inline" style="width: 240px;">
+    <li nz-submenu nzTitle="{{firstTitle}}" [(nzOpen)]="open">
+      <ul *ngFor="let firstChilren of firstChilrens">
+        <li  nz-submenu nzTitle="{{firstChilren.title}}" *ngIf="firstChilren.children.length>0"  [(nzOpen)]="open">
+            <ul *ngFor="let data of firstChilren.children">
+                <li nz-menu-item (click)="openExcel(data.key)">{{data.title}}</li>
+            </ul>
+        </li>
+        <li  nz-menu-item *ngIf="firstChilren.children.length==0" (click)="addThree(firstChilren.key)">
+            {{firstChilren.title}}
+        </li>
+      </ul>
+    </li>
+  </ul>

@@ -1,0 +1,37 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="addToThree()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5" nzFor="gender" nzRequired>电路板数：</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzErrorTip="请选择电路板数">
+            <nz-select
+              id="gender"
+              formControlName="gender"
+              nzPlaceHolder="请选择电路板数"
+              (ngModelChange)="addField($event)"
+            >
+              <nz-option nzValue="1" nzLabel="1"></nz-option>
+              <nz-option nzValue="2" nzLabel="2"></nz-option>
+              <nz-option nzValue="3" nzLabel="3"></nz-option>
+              <nz-option nzValue="4" nzLabel="4"></nz-option>
+              <nz-option nzValue="5" nzLabel="5"></nz-option>
+              <nz-option nzValue="6" nzLabel="6"></nz-option>
+              <nz-option nzValue="7" nzLabel="7"></nz-option>
+              <nz-option nzValue="8" nzLabel="8"></nz-option>
+              <nz-option nzValue="9" nzLabel="9"></nz-option>
+              <nz-option nzValue="10" nzLabel="10"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngFor="let control of listOfControl; let i = index">
+            <nz-form-label  [nzSpan]="5" [nzFor]="control.controlInstance">
+                电路板{{i}}名称：
+            </nz-form-label>
+            <nz-form-control  [nzSpan]="12" nzErrorTip="请输入电路板名称">
+              <input class="passenger-input" nz-input placeholder="请输入电路板名称" [attr.id]="control.id" [formControlName]="control.controlInstance"/>
+            </nz-form-control>
+          </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="12" [nzOffset]="5">
+            <button nz-button nzType="primary">立即新建</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>

@@ -1,0 +1,19 @@
+<nz-layout style="height: 100%">
+  <nz-header>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" class="header-menu">
+      
+    </ul>
+  </nz-header>
+  <nz-content class="outer-content">
+    <nz-layout class="inner-layout">
+      <nz-sider nzWidth="200px" nzTheme="light" *ngIf="isNoMue" style="min-height: 700px">
+          <orglist  [orgLists]="orgs" (addExcelIs)="getExcel($event)" (addThreeIs)="getAddThreeKey($event)"></orglist>
+      </nz-sider>
+      <nz-content class="inner-content">
+          <index  (mue)="getMue($event)" *ngIf="!isNoMue"></index>
+          <addThree [key]="addThreeKey" (isFinshAdd)="getFinsh($event)" (addThreeList)="getAddThree($event)" *ngIf="isAddThree"></addThree>
+          <addExcel  *ngIf="isExcel"></addExcel>
+      </nz-content>
+    </nz-layout>
+  </nz-content>
+</nz-layout>
